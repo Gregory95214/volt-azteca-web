@@ -1,0 +1,7 @@
+const q=(s,ctx=document)=>ctx.querySelector(s);const qa=(s,ctx=document)=>[...ctx.querySelectorAll(s)];
+const menu=q('.mobile-menu'),mobile=q('.mobile-panel');if(menu&&mobile){menu.addEventListener('click',()=>{mobile.classList.toggle('open');menu.setAttribute('aria-expanded',mobile.classList.contains('open'))});qa('.mobile-panel a').forEach(a=>a.addEventListener('click',()=>mobile.classList.remove('open')))}
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});qa('.reveal').forEach(el=>io.observe(el));
+const stage=q('.solar-stage');if(stage&&matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches){window.addEventListener('mousemove',e=>{const x=(e.clientX/innerWidth-.5)*10,y=(e.clientY/innerHeight-.5)*-7;stage.style.transform=`rotateX(${6+y}deg) rotateY(${-12+x}deg)`},{passive:true})}
+const year=q('[data-year]');if(year)year.textContent=new Date().getFullYear();
+qa('[data-track]').forEach(el=>el.addEventListener('click',()=>{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'lead_click',lead_channel:el.dataset.track,language:document.documentElement.lang})}));
+const form=q('#lead-form');if(form){form.addEventListener('submit',()=>{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'generate_lead',form_name:'solar_quote',language:document.documentElement.lang})})}

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gregory95214.github.io/volt-azteca-web/sitemap.xml
